@@ -14,6 +14,6 @@ public interface IOrderService
     /// <summary>
     /// Creates new entry for a given order details.
     /// </summary>
-    /// <param name="orderDto">Order details.</param>
-    Task CreateOrderEntry(OrderDto orderDto);
+    /// <param name="order">Order details.</param>
+    Task CreateOrderEntry(Order order);
 }

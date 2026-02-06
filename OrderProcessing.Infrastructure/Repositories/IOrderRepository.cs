@@ -14,6 +14,6 @@ public interface IOrderRepository
     /// <summary>
     /// Adds new order to the repository.
     /// </summary>
-    /// <param name="orderDto">Order details.</param>
-    Task AddOrder(OrderDto orderDto);
+    /// <param name="order">Order details.</param>
+    Task AddOrder(Order order);
 }

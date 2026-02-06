@@ -1,6 +1,6 @@
 namespace OrderProcessing.Domain;
 
-public class OrderDto
+public class Order
 {
     public int Id { get; set; }
 

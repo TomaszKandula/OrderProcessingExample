@@ -23,12 +23,12 @@ public class OrderService(IOrderRepository orderRepository, ILoggerService logge
     }
 
     /// <inheritdoc/>
-    public async Task CreateOrderEntry(OrderDto orderDto)
+    public async Task CreateOrderEntry(Order order)
     {
         try
         {
             loggerService.LogInfo("Processing new order...");
-            await orderRepository.AddOrder(orderDto);
+            await orderRepository.AddOrder(order);
         }
         catch (Exception exception)
         {

@@ -11,13 +11,13 @@ public class Application(IOrderService orderService, ILoggerService loggerServic
         loggerService.LogInfo("Order Processing System started...");
 
         // This simulates Order Processing System
-        var exampleOrder1 = new OrderDto
+        var exampleOrder1 = new Order
         {
             Id = 1,
             Description = "Keyboard"
         };
 
-        var exampleOrder2 = new OrderDto
+        var exampleOrder2 = new Order
         {
             Id = 4,
             Description = "Display"

@@ -8,7 +8,7 @@ public class OrderRepository : IOrderRepository
 {
     private readonly IOrderValidator _orderValidator;
     
-    private ConcurrentDictionary<int, OrderDto> _orders = null!;
+    private ConcurrentDictionary<int, Order> _orders = null!;
 
     public OrderRepository(IOrderValidator orderValidator)
     {
@@ -36,11 +36,11 @@ public class OrderRepository : IOrderRepository
 
     /// <inheritdoc/>
     /// <exception cref="ArgumentException">Throws an exception when order ID is invalid.</exception>
-    public async Task AddOrder(OrderDto orderDto)
+    public async Task AddOrder(Order order)
     {
-        var isSuccessful = _orders.TryAdd(orderDto.Id, orderDto);
+        var isSuccessful = _orders.TryAdd(order.Id, order);
         if (!isSuccessful)
-            throw new ArgumentException($"Order ID: {orderDto.Id}. It already exists.");
+            throw new ArgumentException($"Order ID: {order.Id}. It already exists.");
 
         await Task.Delay(100);
     }
@@ -50,13 +50,13 @@ public class OrderRepository : IOrderRepository
         var processorCount = Environment.ProcessorCount;
         var concurrencyLevel = processorCount * 2;        
 
-        _orders = new ConcurrentDictionary<int, OrderDto>(concurrencyLevel, 10);
-        _orders.TryAdd(1, new OrderDto
+        _orders = new ConcurrentDictionary<int, Order>(concurrencyLevel, 10);
+        _orders.TryAdd(1, new Order
         {
             Id = 1,
             Description =  "Laptop"
         });
-        _orders.TryAdd(2, new OrderDto
+        _orders.TryAdd(2, new Order
         {
             Id = 2,
             Description =  "Phone"
